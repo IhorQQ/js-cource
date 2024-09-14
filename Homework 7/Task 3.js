@@ -1,13 +1,13 @@
 function divide(numerator, denominator) {
 
     if (denominator === 0 || typeof numerator !== 'number' || typeof denominator !== 'number') {
-        throw new Error (`Only numbers can be processed and devider must be > 0`)
+        throw new Error (`Only numbers can be processed and divider must be > 0`)
     }
     return numerator / denominator
 }
 
 
-// Devider is 0
+// Divider is 0
 try {
     divide(10,0)
 } catch (error) {
