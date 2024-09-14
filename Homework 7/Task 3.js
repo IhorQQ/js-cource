@@ -9,7 +9,7 @@ function divide(numerator, denominator) {
 
 // Divider is 0
 try {
-    divide(10,0)
+    console.log(divide(10,0))
 } catch (error) {
     console.error(error.message)
 } finally {
@@ -18,7 +18,7 @@ try {
 
 // Input type is wrong
 try {
-    divide('qwe',2)
+    console.log(divide('qwe',2))
 } catch (error) {
     console.error(error.message)
 } finally {
@@ -27,7 +27,7 @@ try {
 
 // Correct usage
 try {
-    divide(10,5)
+    console.log(divide(10,5))
 } catch (error) {
     console.error(error.message);
 } finally {

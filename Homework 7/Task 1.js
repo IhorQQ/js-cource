@@ -1,5 +1,5 @@
-const handleEven = () => { return 'number is even' }
-const handleOdd = () => { return 'number is odd' }
+const handleEven = () => 'number is even'
+const handleOdd = () => 'number is odd'
 
 
 function handleNum(num, cb1, cb2) {
