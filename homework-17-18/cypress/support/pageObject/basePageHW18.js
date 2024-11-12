@@ -65,28 +65,28 @@ export default class BasePage {
 
 
     // Actions
-    clickHome() {
+    clickHomeButton() {
         this.homeButton.click()
     }
 
-    clickAbout() {
+    clickAboutButton() {
         this.aboutButton.click()
     }
 
-    clickContacts() {
+    clickContactsButton() {
         this.contactsButton.click();
     }
 
-    clickGuestLogIn() {
+    clickGuestLogInButton() {
         this.guestLogInButton.click();
     }
 
-    clickSignIn() {
+    clickSignInButton() {
         this.signInButton.click();
     }
 
-    clickSignUp() {
-        this.clickSignUp.click();
+    clickSignUpButton() {
+        this.signUpButton.click();
     }
 
 }

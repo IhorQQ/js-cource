@@ -1,11 +1,14 @@
 import BasePage from '../support/pageObject/basePageHW18'
+import RegistrationModal from "../support/pageObject/registrationModal";
 
 let basePage
+let registrationModal
 
 describe('Navigation buttons presented on the header of main page', () => {
 
     before (() => {
         basePage = new BasePage()
+        registrationModal = new RegistrationModal()
     })
 
     beforeEach(() => {
