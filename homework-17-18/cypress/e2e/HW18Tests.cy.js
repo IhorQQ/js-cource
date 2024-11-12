@@ -31,14 +31,20 @@ describe('Navigation buttons presented on the header of main page', () => {
 
     it('Check the header "Guest Log In" button', () => {
         basePage.guestLogInButton.should('be.visible').and('not.be.disabled');
+        basePage.guestLogInButton.click()
+        cy.get('[class="header_bar"]').should('be.visible').and('have.text', 'Logged in as guest, any changes will be lost!')
     })
 
     it('Check the header "Sign in" button', () => {
-        basePage.signInButton.should('be.visible').and('not.be.disabled');
+        basePage.signInButton.should('be.visible').and('not.be.disabled').click()
+        cy.get('[class="modal-content"]').should('be.visible')
+        cy.get('[class="modal-content"]').children().should('contain.text', 'Log in')
     })
 
     it('Check the header "Sign Up" button', () => {
-        basePage.signUpButton.should('be.visible').and('not.be.disabled');
+        basePage.signUpButton.should('be.visible').and('not.be.disabled').click()
+        cy.get('[class="modal-content"]').should('be.visible')
+        cy.get('[class="modal-content"]').children().should('contain.text', 'Registration')
     })
 });
 
@@ -76,6 +82,16 @@ describe('Social buttons are presented on the footer of main page', () => {
 
     it('Check "LinkedIn" social icon', () => {
         basePage.linkedinIconButton.parent().should('be.visible').and('have.attr', 'href', 'https://www.linkedin.com/school/ithillel/')
+    })
+
+    it('Check Hillel url', () => {
+        basePage.hillelUrl.should('be.visible').and('have.attr', 'href', 'https://ithillel.ua')
+        basePage.hillelUrl.invoke('removeAttr', 'target', '_blank').click()
+        cy.url().should('eq', 'https://ithillel.ua/')
+    })
+
+    it('Check Hillel email', () => {
+        basePage.hillelEmail.should('be.visible').and('have.attr', 'href', 'mailto:developer@ithillel.ua')
     })
 });
 

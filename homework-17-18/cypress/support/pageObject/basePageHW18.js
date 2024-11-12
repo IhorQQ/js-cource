@@ -51,6 +51,15 @@ export default class BasePage {
         return cy.get(this.parentContainer).find('[class*="icon-linkedin"]');
     }
 
+    get hillelUrl() {
+        return cy.get('[class*="contacts_link"]').contains('ithillel.ua')
+    }
+
+    get hillelEmail() {
+        return cy.get('[class*="contacts_link"]').contains('support@ithillel.ua')
+    }
+
+
 
 
 

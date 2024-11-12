@@ -17,7 +17,7 @@ describe('Sign in checks', () => {
         cy.clearCookies()
     })
 
-    it('Should be able to sign-in with valid data', () => {
+    i('Should be able to sign-in with valid data', () => {
         cy.get(signUpPage.usernameField).type(USERS.validUser)
         cy.get(signUpPage.passwordField).type(USERS.pass)
         cy.get(signUpPage.loginButton).click()
