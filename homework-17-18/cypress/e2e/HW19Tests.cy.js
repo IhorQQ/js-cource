@@ -1,5 +1,4 @@
 import RegistrationModal from '../support/pageObject/registrationModal';
-import { faker }  from '@faker-js/faker';
 
 let userData
 let registrationModal;
