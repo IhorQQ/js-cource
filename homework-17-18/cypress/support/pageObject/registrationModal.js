@@ -1,5 +1,5 @@
 import BasePage from '../pageObject/basePageHW18'
-import { faker } from '@faker-js/faker';
+import { faker }  from '@faker-js/faker';
 
 export default class RegistrationModal extends BasePage {
 
@@ -31,6 +31,10 @@ export default class RegistrationModal extends BasePage {
         return cy.get('button[class="btn btn-primary"]')
     }
 
+    get errorMessage() {
+        return cy.get('div[class="invalid-feedback"]')
+    }
+
 
     // Actions
     clickRegisterButton() {
@@ -38,7 +42,7 @@ export default class RegistrationModal extends BasePage {
     }
 
     fillFirstNameField(firstName) {
-        this.firstName.type(firstName)
+        this.firstNameField.type(firstName)
     }
 
     fillLastNameField(lastName) {
@@ -55,6 +59,10 @@ export default class RegistrationModal extends BasePage {
 
     fillRepeatPasswordField(repeatPassword) {
         this.repeatPasswordField.type(repeatPassword)
+    }
+
+    clickRegisterButton() {
+        this.registerButton.click()
     }
 
     openRegistrationModal() {
