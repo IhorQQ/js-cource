@@ -61,9 +61,6 @@ export default class RegistrationModal extends BasePage {
         this.repeatPasswordField.type(repeatPassword)
     }
 
-    clickRegisterButton() {
-        this.registerButton.click()
-    }
 
     openRegistrationModal() {
         cy.visit('/', {
