@@ -1,4 +1,4 @@
-import signUpPage from "../support/signUpPage";
+import signUpPage from "../support/pageObject/signUpPage";
 
 const USERS = {
     validUser: 'standard_user',
@@ -10,14 +10,14 @@ const USERS = {
 
 describe('Sign in checks', () => {
     beforeEach(() => {
-        cy.visit('/')
+        cy.visit('https://www.saucedemo.com')
     })
 
     afterEach(() => {
         cy.clearCookies()
     })
 
-    it('Should be able to sign-in with valid data', () => {
+    i('Should be able to sign-in with valid data', () => {
         cy.get(signUpPage.usernameField).type(USERS.validUser)
         cy.get(signUpPage.passwordField).type(USERS.pass)
         cy.get(signUpPage.loginButton).click()
