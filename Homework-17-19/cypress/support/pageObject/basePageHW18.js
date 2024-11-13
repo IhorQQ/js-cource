@@ -89,4 +89,12 @@ export default class BasePage {
         this.signUpButton.click();
     }
 
+    visitMainPage() {
+        cy.visit('/', {
+            auth: {
+                username: 'guest',
+                password: 'welcome2qauto'
+            }});
+    }
+
 }

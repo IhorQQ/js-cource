@@ -1,12 +1,15 @@
 import RegistrationModal from '../support/pageObject/registrationModal';
+import Methods from "../support/pageObject/baseMethods";
 
 let userData
 let registrationModal;
+let methods
 
 describe('Sign up checks', () => {
 
     before(() => {
         registrationModal = new RegistrationModal()
+        methods = new Methods
         userData = RegistrationModal.generateUserData()
 
     })
@@ -116,22 +119,22 @@ describe('Sign up checks', () => {
         */
 
         it('"Email" validation - empty field', () => {
-            registrationModal.emailField.should('not.have.class', 'is-invalid')
-            registrationModal.emailField.focus().blur()
-            registrationModal.emailField.should('have.class', 'is-invalid')
+            registrationModal.emailFieldR.should('not.have.class', 'is-invalid')
+            registrationModal.emailFieldR.focus().blur()
+            registrationModal.emailFieldR.should('have.class', 'is-invalid')
             registrationModal.errorMessage.should('be.visible').and('have.text', 'Email required')
         })
 
         it('"Email" validation - wrong field data', () => {
-            registrationModal.emailField.should('not.have.class', 'is-invalid')
+            registrationModal.emailFieldR.should('not.have.class', 'is-invalid')
             registrationModal.fillEmailField('test')
-            registrationModal.emailField.blur().and('have.class', 'is-invalid')
+            registrationModal.emailFieldR.blur().and('have.class', 'is-invalid')
             registrationModal.errorMessage.should('be.visible').and('have.text', 'Email is incorrect')
         })
 
         it('"Email" validation - valid data does not trigger error', () => {
             registrationModal.fillEmailField(userData.email)
-            registrationModal.emailField.should('not.have.class', 'is-invalid')
+            registrationModal.emailFieldR.should('not.have.class', 'is-invalid')
             registrationModal.errorMessage.should('not.exist')
         })
     })
@@ -219,8 +222,20 @@ describe('Sign up checks', () => {
             registrationModal.errorMessage.should('not.exist')
         })
 
-
-
     })
 
+})
+
+describe('"Usage of the custom logIn method', () => {
+
+    before(() => {
+        registrationModal = new RegistrationModal()
+        methods = new Methods
+        userData = RegistrationModal.generateUserData()
+        methods.createAccount(userData)
     })
+
+    it('Login method check', () => {
+        methods.UILogIn(userData)
+    })
+})

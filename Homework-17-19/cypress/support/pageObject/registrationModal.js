@@ -11,7 +11,7 @@ export default class RegistrationModal extends BasePage {
         return cy.get('input[id="signupLastName"]')
     }
 
-    get emailField() {
+    get emailFieldR() {
         return cy.get('input[id="signupEmail"]')
     }
 
@@ -50,41 +50,38 @@ export default class RegistrationModal extends BasePage {
     }
 
     fillEmailField(email) {
-        this.emailField.type(email)
+        this.emailFieldR.type(email)
     }
 
     fillPasswordField(password) {
-        this.passwordField.type(password)
+        this.passwordField.type(password, { sensitive: true })
     }
 
     fillRepeatPasswordField(repeatPassword) {
-        this.repeatPasswordField.type(repeatPassword)
+        this.repeatPasswordField.type(repeatPassword, { sensitive: true })
     }
 
 
     openRegistrationModal() {
-        cy.visit('/', {
-            auth: {
-                username: 'guest',
-                password: 'welcome2qauto'
-            }});
+        this.visitMainPage()
         this.clickSignUpButton()
     }
+
 
     static generateUserData() {
         return {
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
             email: faker.internet.email({
-                firstName: this.firstName,
-                lastName: this.lastName,
+                firstName: faker.person.firstName(),
+                lastName: faker.person.lastName(),
                 provider: 'testemail.com',
                 allowSpecialCharacters: true
             }),
             validPassword: faker.internet.password({
                 length: 8,
                 pattern: /[A-Za-z0-9]/,
-                prefix: 'A1!'
+                prefix: 'A1a!'
             }),
         }
     }
