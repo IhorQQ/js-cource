@@ -224,6 +224,25 @@ describe('Sign up checks', () => {
 
     })
 
+    context('Required fields on the "Registration" form check', () => {
+
+        it.only('"Register" button becomes active only when all required fields are filled', () => {
+            registrationModal.registerButton.should('be.disabled')
+            registrationModal.fillFirstNameField('Ihor')
+            registrationModal.registerButton.should('be.disabled')
+            registrationModal.fillLastNameField('Holubtsov')
+            registrationModal.registerButton.should('be.disabled')
+            registrationModal.fillEmailField(userData.email)
+            registrationModal.registerButton.should('be.disabled')
+            registrationModal.fillPasswordField('TestTest1', {sensitive: true})
+            registrationModal.registerButton.should('be.disabled')
+            registrationModal.fillRepeatPasswordField('TestTest1', {sensitive: true})
+            registrationModal.registerButton.should('be.enabled')
+        })
+
+    })
+
+
 })
 
 describe('"Usage of the custom logIn method', () => {
