@@ -1,4 +1,4 @@
-import signUpPage from "../support/pageObject/signUpPage";
+import signUpPage from "../support/pageObject/SignUpPage";
 
 const USERS = {
     validUser: 'standard_user',

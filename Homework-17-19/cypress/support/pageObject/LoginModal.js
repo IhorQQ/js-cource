@@ -1,4 +1,4 @@
-import RegistrationModal from "./registrationModal";
+import RegistrationModal from "./RegistrationModal";
 import '../commands'
 
 export class LoginModal extends RegistrationModal {

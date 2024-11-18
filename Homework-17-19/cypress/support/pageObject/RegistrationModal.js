@@ -1,4 +1,4 @@
-import BasePage from '../pageObject/basePageHW18'
+import BasePage from './BasePageHW18'
 import { faker }  from '@faker-js/faker';
 
 export default class RegistrationModal extends BasePage {

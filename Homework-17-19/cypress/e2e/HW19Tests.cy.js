@@ -1,5 +1,5 @@
-import RegistrationModal from '../support/pageObject/registrationModal';
-import Methods from "../support/pageObject/baseMethods";
+import RegistrationModal from '../support/pageObject/RegistrationModal';
+import Methods from "../support/pageObject/BaseMethods";
 
 let userData
 let registrationModal;
@@ -226,7 +226,7 @@ describe('Sign up checks', () => {
 
     context('Required fields on the "Registration" form check', () => {
 
-        it.only('"Register" button becomes active only when all required fields are filled', () => {
+        it('"Register" button becomes active only when all required fields are filled', () => {
             registrationModal.registerButton.should('be.disabled')
             registrationModal.fillFirstNameField('Ihor')
             registrationModal.registerButton.should('be.disabled')
@@ -245,16 +245,16 @@ describe('Sign up checks', () => {
 
 })
 
-describe('"Usage of the custom logIn method', () => {
+describe('Usage of the custom logIn method', () => {
+
 
     before(() => {
-        registrationModal = new RegistrationModal()
         methods = new Methods
         userData = RegistrationModal.generateUserData()
         methods.createAccount(userData)
     })
 
-    it('Login method check', () => {
-        methods.UILogIn(userData)
+    it.only('Login method check', () => {
+        methods.uiLogIn(userData)
     })
 })

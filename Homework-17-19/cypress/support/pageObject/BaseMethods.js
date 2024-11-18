@@ -1,5 +1,5 @@
 
-import {LoginModal} from "./loginModal";
+import {LoginModal} from "./LoginModal";
 
 
 export default class Methods extends LoginModal {
@@ -13,7 +13,7 @@ export default class Methods extends LoginModal {
         this.clickRegisterButton()
     }
 
-    UILogIn({email, validPassword}) {
+    uiLogIn({email, validPassword}) {
         this.openLognModal()
         this.fillLoginForm({email, validPassword})
         this.clickLoginButton()
