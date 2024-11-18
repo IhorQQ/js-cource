@@ -1,4 +1,4 @@
-import BasePage from '../support/pageObject/basePageHW18'
+import BasePage from '../support/pageObject/BasePageHW18'
 
 let basePage
 
