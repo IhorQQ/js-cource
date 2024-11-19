@@ -1,5 +1,6 @@
 
 import {LoginModal} from "./LoginModal";
+import {faker} from "@faker-js/faker";
 
 
 export default class Methods extends LoginModal {
@@ -17,5 +18,24 @@ export default class Methods extends LoginModal {
         this.openLognModal()
         this.fillLoginForm({email, validPassword})
         this.clickLoginButton()
+        cy.url().should('include', '/panel/garage')
+    }
+
+    static generateUserData() {
+        return {
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
+            email: faker.internet.email({
+                firstName: faker.person.firstName(),
+                lastName: faker.person.lastName(),
+                provider: 'testemail.com',
+                allowSpecialCharacters: true
+            }),
+            validPassword: faker.internet.password({
+                length: 8,
+                pattern: /[A-Za-z0-9]/,
+                prefix: 'A1a!'
+            }),
+        }
     }
 }
