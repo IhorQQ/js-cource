@@ -7,11 +7,10 @@ module.exports = defineConfig({
   defaultCommandTimeout: 10000,
   reporter: 'mochawesome',
   reporterOptions: {
-    reportDir: 'cypress/reports',
-    overwrite: false,
-    html: true,
-    json: false,
-    timestamp: 'mm/dd/yyyy_HH/MM/ss'
+    reportDir: 'cypress/reports/results',
+    overwrite: true,
+    html: false,
+    json: true,
   },
 
   screenshotsFolder: '../Homework-17-19/cypress/screenshots',
@@ -22,7 +21,15 @@ module.exports = defineConfig({
     baseUrl: "https://qauto.forstudy.space",
     supportFile: false,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      config.baseUrl = config.env.BASE_URL || 'https://qauto.forstudy.space';
+
+      if (config.env.ENV === 'stableEnv') {
+        config.baseUrl = 'https://qauto.forstudy.space';
+      } else if (config.env.ENV === 'brokenEnv') {
+        config.baseUrl = 'https://qauto2.forstudy.space';
+      }
+
+      return config;
 
     },
   },

@@ -70,8 +70,8 @@ export default class RegistrationModal extends BasePage {
 
     static generateUserData() {
         return {
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
+            firstName: faker.person.firstName().replace(/[^a-zA-Z\s]/g, ''),
+            lastName: faker.person.lastName().replace(/[^a-zA-Z\s]/g, ''),
             email: faker.internet.email({
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),

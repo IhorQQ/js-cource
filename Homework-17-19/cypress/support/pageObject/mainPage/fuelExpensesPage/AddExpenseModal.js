@@ -30,11 +30,13 @@ export default class AddExpenseModal extends AddCarModal {
 
     // Actions
 
-    addExpense(vehicle, reportDate, mileage, numberLiters, totalCost) {
+
+    // This doesn't fill the prefilled fields
+    addExpense(mileage, numberLiters, totalCost) {
         this.mainPage.fuelExpensesNavBar.click()
         this.fuelExpensesPage.addExpenseBtn.click()
-        this.vehicleDD.select(vehicle)
-        this.reportDateInputField.clear().type(reportDate)
+        // this.vehicleDD.select(vehicle)
+        // this.reportDateInputField.clear().type(reportDate)
         this.mileageExpensesInputField.clear().type(mileage)
         this.numberLitersInputField.type(numberLiters)
         this.totalCostInputField.type(totalCost)

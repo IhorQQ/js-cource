@@ -26,8 +26,8 @@ export default class Methods extends LoginModal {
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
             email: faker.internet.email({
-                firstName: faker.person.firstName(),
-                lastName: faker.person.lastName(),
+                firstName: faker.person.firstName().replace(/[^a-zA-Z\s]/g, ''),
+                lastName: faker.person.lastName().replace(/[^a-zA-Z\s]/g, ''),
                 provider: 'testemail.com',
                 allowSpecialCharacters: true
             }),

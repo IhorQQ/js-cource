@@ -11,6 +11,8 @@ let addCarModal
 let fuelExpensesPage
 let addExpenseModal
 let userData
+let date
+let tomorrowDate
 
 
 describe('Sign in checks', () => {
@@ -21,6 +23,9 @@ describe('Sign in checks', () => {
         addCarModal = new AddCarModal()
         fuelExpensesPage = new FuelExpensesPage()
         addExpenseModal = new AddExpenseModal()
+        date = new Date()
+        tomorrowDate = `${date.getUTCDate() + 1}.${date.getUTCMonth()}.${date.getUTCFullYear()}`
+        console.log(tomorrowDate)
         userData = Methods.generateUserData()
 
     })
@@ -33,7 +38,7 @@ describe('Sign in checks', () => {
 
     it('User can add car + expenses', () => {
         addCarModal.addCar('BMW', 'X5', '111')
-        addExpenseModal.addExpense('BMW X5', '19.11.2024', '1000', '25', '200' )
+        addExpenseModal.addExpense('1000', '25', '200' )
     })
 
 })
