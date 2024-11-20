@@ -8,7 +8,7 @@
     "test:run:stableEnv": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports/results,overwrite=false,html=false,json=true --env ENV=stableEnv",
     "test:run:brokenEnv": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports/results,overwrite=false,html=false,json=true --env ENV=brokenEnv",
     "report:merge": "mochawesome-merge 'cypress/reports/results/*.json' > cypress/reports/mochawesome.json",
-    "report:generate": "node -e \"const { execSync } = require('child_process'); const date = new Date(); const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`; const env = process.env.ENV || 'default'; execSync(`npx marge cypress/reports/mochawesome.json --reportDir cypress/reports --reportFilename mochawesome-${env}-${formattedDate}`);\"",
+    "report:generate": "node cypress/reports/generate-report.js",
     "test:report": "npm run test:run && npm run report:merge && npm run report:generate",
     "test:report:stableEnv": "npm run test:run:stableEnv && npm run report:merge && ENV=stableEnv npm run report:generate",
     "test:report:brokenEnv": "npm run test:run:brokenEnv && npm run report:merge && ENV=brokenEnv npm run report:generate"

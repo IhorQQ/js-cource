@@ -1,14 +1,10 @@
 import Methods from "../support/pageObject/BaseMethods";
-import GaragePage from "../support/pageObject/mainPage/garagePage/GaragePage.js";
 import AddCarModal from "../support/pageObject/mainPage/garagePage/AddCarModal.js";
-import FuelExpensesPage from "../support/pageObject/mainPage/fuelExpensesPage/FuelExpensesPage";
 import AddExpenseModal from "../support/pageObject/mainPage/fuelExpensesPage/AddExpenseModal";
 
 
 let methods
-let garagePage
 let addCarModal
-let fuelExpensesPage
 let addExpenseModal
 let userData
 let date
@@ -18,10 +14,8 @@ let tomorrowDate
 describe('Sign in checks', () => {
 
     before(() => {
-        methods = new Methods
-        garagePage = new GaragePage()
+        methods = new Methods()
         addCarModal = new AddCarModal()
-        fuelExpensesPage = new FuelExpensesPage()
         addExpenseModal = new AddExpenseModal()
         date = new Date()
         tomorrowDate = `${date.getUTCDate() + 1}.${date.getUTCMonth()}.${date.getUTCFullYear()}`
