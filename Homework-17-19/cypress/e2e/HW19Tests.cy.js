@@ -254,7 +254,7 @@ describe('Usage of the custom logIn method', () => {
         methods.createAccount(userData)
     })
 
-    it.only('Login method check', () => {
+    it('Login method check', () => {
         methods.uiLogIn(userData)
     })
 })

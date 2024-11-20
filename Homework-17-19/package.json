@@ -4,16 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "open": "cypress open"
+    "test:run": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports/results,overwrite=false,html=false,json=true",
+    "test:run:stableEnv": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports/results/stableEnv,overwrite=false,html=false,json=true --env ENV=stableEnv",
+    "test:run:brokenEnv": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports/results/brokenEnv,overwrite=false,html=false,json=true --env ENV=brokenEnv",
+    "report:merge:stableEnv": "mochawesome-merge 'cypress/reports/results/stableEnv/*.json' > cypress/reports/stableEnv-mochawesome.json",
+    "report:merge:brokenEnv": "mochawesome-merge 'cypress/reports/results/brokenEnv/*.json' > cypress/reports/brokenEnv-mochawesome.json",
+    "report:generate": "node cypress/support/generate-report.js",
+    "test:report:stableEnv": "npm run test:run:stableEnv && npm run report:merge:stableEnv && ENV=stableEnv npm run report:generate",
+    "test:report:brokenEnv": "npm run test:run:brokenEnv && npm run report:merge:brokenEnv && ENV=brokenEnv npm run report:generate"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.15.1",
-    "prettier": "^3.3.3",
-    "@faker-js/faker": "^9.2.0"
-  },
-  "dependencies": {
-
+    "@faker-js/faker": "^9.2.0",
+    "cypress": "^13.16.0",
+    "mocha-foo-reporter": "^0.0.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "prettier": "^3.3.3"
   }
 }
