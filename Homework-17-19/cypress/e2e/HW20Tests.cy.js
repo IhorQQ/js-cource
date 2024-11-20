@@ -2,14 +2,10 @@ import Methods from "../support/pageObject/BaseMethods";
 import AddCarModal from "../support/pageObject/mainPage/garagePage/AddCarModal.js";
 import AddExpenseModal from "../support/pageObject/mainPage/fuelExpensesPage/AddExpenseModal";
 
-
 let methods
 let addCarModal
 let addExpenseModal
 let userData
-let date
-let tomorrowDate
-
 
 describe('Sign in checks', () => {
 
@@ -17,15 +13,10 @@ describe('Sign in checks', () => {
         methods = new Methods()
         addCarModal = new AddCarModal()
         addExpenseModal = new AddExpenseModal()
-        date = new Date()
-        tomorrowDate = `${date.getUTCDate() + 1}.${date.getUTCMonth()}.${date.getUTCFullYear()}`
-        console.log(tomorrowDate)
         userData = Methods.generateUserData()
-
     })
 
     beforeEach(() => {
-        // cy.clearCookies()
         methods.createAccount(userData)
         methods.uiLogIn(userData)
     })
