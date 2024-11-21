@@ -45,6 +45,5 @@ export default class AddCarModal {
         this.mileageInputField.type(mileage)
         this.addBtn.click()
         this.successAlert.should('be.visible').and('have.text', 'Car added');
-
-    }
+        }
 }
