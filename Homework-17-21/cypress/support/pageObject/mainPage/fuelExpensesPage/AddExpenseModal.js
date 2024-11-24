@@ -41,29 +41,33 @@ export default class AddExpenseModal extends AddCarModal {
         return cy.get('[id="addExpenseTotalCost"]')
     }
 
+    get successAlertExpenseAdded() {
+        return cy.get('[class*=alert-success]').contains('Fuel expense added');
+    }
+
 
     // Actions
 
 
     // This doesn't fill the prefilled fields
-    addExpenseUI(mileage, numberLiters, totalCost) {
+    addExpenseUI({ mileage, liters, totalCost }) {
         this.mainPage.fuelExpensesNavBar.click()
         this.fuelExpensesPage.addExpenseBtn.click()
         // this.vehicleDD.select(vehicle)
         // this.reportDateInputField.clear().type(reportDate)
-        this.mileageExpensesInputField.clear().type(mileage)
-        this.numberLitersInputField.type(numberLiters)
+        this.mileageExpensesInputField.clear().type(mileage + 1)
+        this.numberLitersInputField.type(liters)
         this.totalCostInputField.type(totalCost)
         this.addBtn.click()
-        this.successAlert.should('be.visible').and('have.text', 'Fuel expense added')
+        this.successAlertExpenseAdded.should('be.visible').and('have.text', 'Fuel expense added')
 
     }
 
-    addExpenseAPI(carId, mileage, liters, totalCost) {
+    addExpenseAPI(carId, { mileage, liters, totalCost }) {
         cy.request('POST', 'https://qauto.forstudy.space/api/expenses', {
             "carId": carId,
             "reportedAt": formattedDate,
-            "mileage": mileage,
+            "mileage": mileage + 1,
             "liters": liters,
             "totalCost": totalCost,
             "forceMileage": false
@@ -72,7 +76,7 @@ export default class AddExpenseModal extends AddCarModal {
             expect(response.body.data.carId).to.eq(carId);
             expect(response.body.data.id).to.exist
             expect(response.body.data.liters).to.eq(liters);
-            expect(response.body.data.mileage).to.eq(mileage);
+            expect(response.body.data.mileage).to.eq(mileage + 1);
             expect(response.body.data.reportedAt).to.eq(formattedDate);
             expect(response.body.data.totalCost).to.eq(totalCost);
 

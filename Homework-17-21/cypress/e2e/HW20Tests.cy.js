@@ -37,14 +37,14 @@ describe('Car + expenses adding suite', () => {
         methods.uiLogIn(userData)
     })
 
-    it('User can add car + expenses', () => {
+    it('User can add car + expenses via UI', () => {
         cy.intercept('POST', 'https://qauto.forstudy.space/api/cars').as('createCar');
 
         // Create car on UI side
-        addCarModal.addCarUI(carData_BMWX5.brand, carData_BMWX5.model, carData_BMWX5.mileage)
+        addCarModal.addCarUI(carData_BMWX5)
 
         // Add expense on UI side
-        addExpenseModal.addExpenseUI(carData_BMWX5.mileage + 1, carData_BMWX5.liters, carData_BMWX5.totalCost)
+        addExpenseModal.addExpenseUI(carData_BMWX5)
 
         // Verifying that the GET /cars EP contains the created car with correct data
         cy.wait('@createCar').then((interception) => {
@@ -62,11 +62,11 @@ describe('Car + expenses adding suite', () => {
 
     })
 
-    it('Add expenses via API', () => {
-        addCarModal.addCarAPI(carData_BMWX5.brandId,carData_BMWX5.modelId,carData_BMWX5.mileage)
+    it('User can add car + expenses via API', () => {
+        addCarModal.addCarAPI(carData_BMWX5)
         mainPage.getCarsAPI().then((response) => {
             const lastAddedCarId = response.body.data[0].id;
-            addExpenseModal.addExpenseAPI(lastAddedCarId, carData_BMWX5.mileage + 1, carData_BMWX5.liters, carData_BMWX5.totalCost);
+            addExpenseModal.addExpenseAPI(lastAddedCarId, carData_BMWX5);
         })
     })
 
