@@ -38,6 +38,10 @@ export default class MainPage {
 
     // Actions
 
+    visitGarage() {
+        cy.visit('/panel/garage');
+    }
+
 
     visitFuelExpenses() {
         cy.visit('/panel/expenses');
@@ -57,5 +61,12 @@ export default class MainPage {
 
     logOut() {
         this.logOutNavBar.click();
+    }
+
+    getCarsAPI() {
+        return cy.request({
+            method: 'GET',
+            url: '/api/cars',
+        })
     }
 }

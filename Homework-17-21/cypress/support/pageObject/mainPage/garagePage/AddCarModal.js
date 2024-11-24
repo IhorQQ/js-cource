@@ -37,7 +37,7 @@ export default class AddCarModal {
 
     //Actions
 
-    addCar(brand, model, mileage) {
+    addCarUI(brand, model, mileage) {
         this.mainPage.garageNavBar.click()
         this.garagePage.addCarBtn.click()
         this.brandDD.select(brand)
@@ -46,4 +46,15 @@ export default class AddCarModal {
         this.addBtn.click()
         this.successAlert.should('be.visible').and('have.text', 'Car added');
         }
+
+
+    addCarAPI(brandId, modelId, mileage) {
+        cy.request('POST', 'https://qauto.forstudy.space/api/cars', {
+            "carBrandId": brandId,
+            "carModelId": modelId,
+            "mileage": mileage
+        }).then((response) => {
+            expect(response.status).to.eq(201);
+        })
+    }
 }
