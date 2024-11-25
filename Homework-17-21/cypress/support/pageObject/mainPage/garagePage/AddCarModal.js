@@ -30,21 +30,31 @@ export default class AddCarModal {
         return cy.get('div[class="modal-content"]').children().contains('button', 'Add');
     }
 
-    get successAlert() {
-        return cy.get('[class*=alert-success]')
+    get successAlertCarAdded() {
+        return cy.get('[class*=alert-success]').contains('Car added');
     }
 
 
     //Actions
 
-    addCar(brand, model, mileage) {
+    addCarUI({brand, model, mileage}) {
         this.mainPage.garageNavBar.click()
         this.garagePage.addCarBtn.click()
         this.brandDD.select(brand)
         this.modelDD.select(model)
         this.mileageInputField.type(mileage)
         this.addBtn.click()
-        this.successAlert.should('be.visible').and('have.text', 'Car added');
+        this.successAlertCarAdded.should('be.visible').and('have.text', 'Car added');
+        }
 
+
+    addCarAPI({ brandId, modelId, mileage }) {
+        cy.request('POST', 'https://qauto.forstudy.space/api/cars', {
+            "carBrandId": brandId,
+            "carModelId": modelId,
+            "mileage": mileage
+        }).then((response) => {
+            expect(response.status).to.eq(201);
+        })
     }
 }

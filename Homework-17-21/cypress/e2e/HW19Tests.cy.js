@@ -251,7 +251,7 @@ describe('Usage of the custom logIn method', () => {
     before(() => {
         methods = new Methods
         userData = RegistrationModal.generateUserData()
-        methods.createAccount(userData)
+        methods.createAccountUI(userData)
     })
 
     it('Login method check', () => {

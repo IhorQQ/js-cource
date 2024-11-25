@@ -13,7 +13,7 @@ module.exports = defineConfig({
     json: true,
   },
 
-  screenshotsFolder: '../Homework-17-19/cypress/screenshots',
+  screenshotsFolder: '../Homework-17-21/cypress/screenshots',
   videosFolder: 'cypress/reports/videos',
 
 
