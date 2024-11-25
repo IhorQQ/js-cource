@@ -66,7 +66,15 @@ describe('Car + expenses adding suite', () => {
         addCarModal.addCarAPI(carData_BMWX5)
         mainPage.getCarsAPI().then((response) => {
             const lastAddedCarId = response.body.data[0].id;
-            addExpenseModal.addExpenseAPI(lastAddedCarId, carData_BMWX5);
+            addExpenseModal.addExpenseAPI(lastAddedCarId, carData_BMWX5).then((response) => {
+                expect(response.status).to.eq(200);
+                expect(response.body.data.carId).to.eq(lastAddedCarId);
+                expect(response.body.data.id).to.exist
+                expect(response.body.data.liters).to.eq(carData_BMWX5.liters);
+                expect(response.body.data.mileage).to.eq(carData_BMWX5.mileage + 1);
+                expect(response.body.data.reportedAt).to.eq(methods.currentDate());
+                expect(response.body.data.totalCost).to.eq(carData_BMWX5.totalCost);
+            })
         })
     })
 
