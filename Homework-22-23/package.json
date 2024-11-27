@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "mode:ui": "playwright test --ui",
     "mode:debug": "playwright test --debug",
     "test:all:chrome:headed": "playwright test --headed --project='Google Chrome'"
@@ -11,8 +13,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "@faker-js/faker": "^9.2.0",
     "@playwright/test": "^1.49.0",
-    "@types/node": "^22.9.4"
+    "@types/node": "^22.9.4",
+    "eslint": "^9.15.0",
+    "eslint-plugin-playwright": "^2.1.0",
+    "globals": "^15.12.0"
   }
 }
