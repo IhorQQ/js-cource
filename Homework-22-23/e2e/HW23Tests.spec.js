@@ -198,9 +198,9 @@ test.describe('Test suite for checking validations', () => {
 
   })
 
-  test.describe('The "Register" button state checks', () => {
+  test.describe('Registration checks', () => {
 
-    test('Check that the "Register" button becomes active only when all required fields are filled with valid data', async () => {
+    test('The "Register" button becomes active only when all required fields are filled with valid data', async () => {
       await expect(signUpModal.locators.registerButton).toBeDisabled()
       await signUpModal.fillFirstName(userData.firstName)
       await expect(signUpModal.locators.registerButton).toBeDisabled()
@@ -212,6 +212,15 @@ test.describe('Test suite for checking validations', () => {
       await expect(signUpModal.locators.registerButton).toBeDisabled()
       await signUpModal.fillRepeatPassword(userData.password)
       await expect(signUpModal.locators.registerButton).toBeEnabled()
+    })
+
+    test('User can create account with valid data', async ({ page }) => {
+      await signUpModal.createUserUI(userData)
+      const responsePromise = await page.waitForResponse('/api/auth/signup')
+      await expect(page).toHaveURL('/panel/garage')
+      const response = await responsePromise.json()
+      expect(response).toHaveProperty('status', 'ok')
+      expect(response).toHaveProperty('data.userId')
     })
   })
 

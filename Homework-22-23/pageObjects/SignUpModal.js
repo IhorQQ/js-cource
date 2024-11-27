@@ -36,11 +36,20 @@ export default class SignUpModal extends BasePage {
     await this.locators.repeatPasswordField.fill(repeatPassword)
   }
 
+  async clickRegisterButton() {
+    await this.locators.registerButton.click()
+  }
+
   async fillSignUpForm ({ firstName, lastName, email, password }) {
     await this.fillFirstName(firstName)
     await this.fillLastName(lastName)
     await this.fillEmail(email)
     await this.fillPassword(password)
     await this.fillRepeatPassword(password)
+  }
+
+  async createUserUI(userData) {
+    await this.fillSignUpForm(userData)
+    await this.clickRegisterButton()
   }
 }
