@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test';
 import LandingPage from '../pageObjects/LandingPage';
 import SignUpModal from "../pageObjects/SignUpModal";
 import BasePage from "../pageObjects/BasePage";
+import 'dotenv/config'
+
 
 
 let landingPage;
